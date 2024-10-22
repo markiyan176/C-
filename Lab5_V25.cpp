@@ -20,9 +20,7 @@ void bubbleSortUpToMax(int arr[], int size) {
     for (int i = 0; i < maxIndex - 1; i++) {
         for (int j = 0; j < maxIndex - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+                swap(arr[j], arr[j + 1]);
             }
         }
     }
