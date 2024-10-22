@@ -4,26 +4,26 @@
 
 using namespace std;
 
-struct CarOwner {
-    string fullName;  
-    string carBrand;  
-    string carNumber; 
-    int carPower;      
+int main() {
+    // Структура для опису власника автомобіля
+    struct CarOwner {
+        string fullName;  
+        string carBrand;  
+        string carNumber; 
+        int carPower;      
 
-    CarOwner(string name, string brand, string number, int power)
-        : fullName(name), carBrand(brand), carNumber(number), carPower(power) {}
-};
+        CarOwner(string name, string brand, string number, int power)
+            : fullName(name), carBrand(brand), carNumber(number), carPower(power) {}
+    };
 
-void printOwnersList(const list<CarOwner>& owners) {
-    for (const auto& owner : owners) {
-        cout << "ПІБ: " << owner.fullName
-             << ", Марка: " << owner.carBrand
-             << ", Номер: " << owner.carNumber
-             << ", Потужність: " << owner.carPower << " к.с." << endl;
-    }
-}
+    // Створення списку власників автомобілів
+    list<CarOwner> owners = {
+        CarOwner("Тарас", "Bentley", "ВР0001ВР", 150),
+        CarOwner("Петро", "BMW", "ВС1010СВ", 200),
+        CarOwner("Олег", "Mercedes", "AA2222AA", 180)
+    };
 
-void bubbleSort(list<CarOwner>& owners) {
+    // Сортування списку за потужністю автомобілів за допомогою бульбашкового сортування
     bool swapped;
     do {
         swapped = false;
@@ -31,22 +31,19 @@ void bubbleSort(list<CarOwner>& owners) {
             auto it2 = it1;
             ++it2;
             if (it2 != owners.end() && it1->carPower > it2->carPower) {
-                swap(*it1, *it2); 
-                swapped = true;
+                swap(*it1, *it2); // Обмін місцями
+                swapped = true;    // Вказує, що був здійснений обмін
             }
         }
-    } while (swapped);
+    } while (swapped); // Продовжує до тих пір, поки є обміни
 
-int main() {
-    list<CarOwner> owners = {
-        CarOwner("Тарас", "Bentley", "ВР0001ВР", 150),
-        CarOwner("Петро", "BMW", "ВС1010СВ", 200),
-        CarOwner("Олег", "Mercedes", "AA2222AA", 180)
-    };
-
-    bubbleSort(owners); 
-
-    printOwnersList(owners); 
+    // Виведення відсортованого списку власників автомобілів
+    for (const auto& owner : owners) {
+        cout << "ПІБ: " << owner.fullName
+             << ", Марка: " << owner.carBrand
+             << ", Номер: " << owner.carNumber
+             << ", Потужність: " << owner.carPower << " к.с." << endl;
+    }
 
     return 0;
 }
