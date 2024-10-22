@@ -1,6 +1,5 @@
 #include <iostream>
 #include <list>
-#include <algorithm>
 #include <string>
 
 using namespace std;
@@ -11,11 +10,9 @@ struct CarOwner {
     string carNumber; 
     int carPower;      
 
-
     CarOwner(string name, string brand, string number, int power)
         : fullName(name), carBrand(brand), carNumber(number), carPower(power) {}
 };
-
 
 void printOwnersList(const list<CarOwner>& owners) {
     for (const auto& owner : owners) {
@@ -26,21 +23,30 @@ void printOwnersList(const list<CarOwner>& owners) {
     }
 }
 
-bool compareByPower(const CarOwner& a, const CarOwner& b) {
-    return a.carPower < b.carPower;
-}
+void bubbleSort(list<CarOwner>& owners) {
+    bool swapped;
+    do {
+        swapped = false;
+        for (auto it1 = owners.begin(); it1 != owners.end(); ++it1) {
+            auto it2 = it1;
+            ++it2;
+            if (it2 != owners.end() && it1->carPower > it2->carPower) {
+                swap(*it1, *it2); 
+                swapped = true;
+            }
+        }
+    } while (swapped);
 
 int main() {
-
     list<CarOwner> owners = {
         CarOwner("Тарас", "Bentley", "ВР0001ВР", 150),
         CarOwner("Петро", "BMW", "ВС1010СВ", 200),
         CarOwner("Олег", "Mercedes", "AA2222AA", 180)
     };
 
-    owners.sort(compareByPower);
+    bubbleSort(owners); 
 
-    printOwnersList(owners);
+    printOwnersList(owners); 
 
     return 0;
 }
