@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <cstdlib>  
 #include <ctime>     
 
@@ -12,7 +11,9 @@ int main() {
     cout << "Введіть розмір матриці: ";
     cin >> n;
 
-    vector<vector<int>> matrix(n, vector<int>(n));
+    
+    int matrix[100][100]; 
+
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
@@ -20,15 +21,13 @@ int main() {
         }
     }
 
-
     cout << "Початкова матриця:" << endl;
-    for (const auto& row : matrix) {
-        for (int elem : row) {
-            cout << elem << "\t";
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cout << matrix[i][j] << "\t";
         }
         cout << endl;
     }
-
 
     for (int i = 0; i < n; ++i) {
         int diag_elem = matrix[i][n - i - 1];  
@@ -45,9 +44,9 @@ int main() {
     }
 
     cout << "\nМатриця після сортування рядків з парними елементами на побічній діагоналі:" << endl;
-    for (const auto& row : matrix) {
-        for (int elem : row) {
-            cout << elem << "\t";
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cout << matrix[i][j] << "\t";
         }
         cout << endl;
     }
